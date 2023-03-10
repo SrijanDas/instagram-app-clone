@@ -1,9 +1,9 @@
 import "package:apps/resources/auth_methods.dart";
+import "package:apps/screens/login_screen.dart";
 import "package:apps/utils/colors.dart";
 import "package:apps/utils/utils.dart";
 import "package:apps/widgets/text_field_input.dart";
 import "package:flutter/material.dart";
-import "package:flutter/rendering.dart";
 import "package:flutter_svg/svg.dart";
 
 class SignupScreen extends StatefulWidget {
@@ -36,8 +36,13 @@ class _SignupScreenState extends State<SignupScreen> {
     });
 
     if (res != "success") {
-      showSanckBar(res, context);
+      showSnackBar(res, context);
     }
+  }
+
+  void navigateToLogin() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
   @override
@@ -49,6 +54,7 @@ class _SignupScreenState extends State<SignupScreen> {
     _usernameController.dispose();
     _bioController.dispose();
   }
+
 
 
   @override
@@ -166,7 +172,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () => {},
+                          onTap: navigateToLogin,
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 8),
                             child: const Text(
